@@ -33,18 +33,18 @@ func longestSubstring(s string, k int) int {
 
 	max := 0
 	start := 0
-	isTrimmed := false
+	isSubstring := false
 	for i := 0; i < len(s); i++ {
 		s2 := s[i : i+1]
 		if charMap[s2] < k {
 			max = int(math.Max(float64(max), float64(longestSubstring(s[start:i], k))))
 			start = i + 1
-			isTrimmed = true
+			isSubstring = true
 			break
 		}
 	}
 
-	if !isTrimmed {
+	if !isSubstring {
 		max = int(math.Max(float64(max), float64(len(s))))
 	} else {
 		max = int(math.Max(float64(max), float64(longestSubstring(s[start:], k))))
